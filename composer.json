@@ -1,0 +1,16 @@
+{
+    "name": "winnipass/wfx",
+    "autoload": {
+        "psr-4": {
+            "Winnipass\\Wfx\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "winni4eva",
+            "email": "adams4lyf@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
