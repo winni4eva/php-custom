@@ -18,8 +18,18 @@ if ($apiPart !== 'api') {
     exit();
 }
 
+if (str_ends_with($resourcePart, 's')) {
+    $resourcePart = substr($resourcePart, 0, -1);
+}
+
 $controllerClasses = ClassFinder::getClassesInNamespace(Helper::CONTROLLER_PATH);
-var_dump($controllerClasses);
-//if (str_contains($uri, 'api'))
+$resourceControllerPath = Helper::resolveResourceControllerNamespaces($controllerClasses, $resourcePart);
+
+if (!$resourceControllerPath) {
+    header("HTTP/1.1 404 Not Found");
+    exit();
+}
 
 $requestMethod = $_SERVER["REQUEST_METHOD"];
+var_dump($resourceControllerPath);
+var_dump($requestMethod);

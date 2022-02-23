@@ -13,9 +13,11 @@
     ],
     "minimum-stability": "dev",
     "require": {
+        "php": "^8.0.2",
         "vlucas/phpdotenv": "5.4.x-dev",
         "robmorgan/phinx": "dev-master",
-        "haydenpierce/class-finder": "dev-master"
+        "haydenpierce/class-finder": "dev-master",
+        "illuminate/collections": "10.x-dev"
     },
     "require-dev": {
         "phpunit/phpunit": "^9"
