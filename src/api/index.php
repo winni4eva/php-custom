@@ -22,14 +22,22 @@ if (str_ends_with($resourcePart, 's')) {
     $resourcePart = substr($resourcePart, 0, -1);
 }
 
-$controllerClasses = ClassFinder::getClassesInNamespace(Helper::CONTROLLER_PATH);
+$controllerClasses = Helper::getControllerClasses();
 $resourceControllerPath = Helper::resolveResourceControllerNamespaces($controllerClasses, $resourcePart);
 
-if (!$resourceControllerPath) {
+if (!class_exists($resourceControllerPath)) {
     header("HTTP/1.1 404 Not Found");
     exit();
 }
 
 $requestMethod = $_SERVER["REQUEST_METHOD"];
-var_dump($resourceControllerPath);
-var_dump($requestMethod);
+$method = Helper::REQUEST_METHOD_TO_CONTROLLER_ACTIONS_MAPPING[$requestMethod];
+$controller = new $resourceControllerPath();
+
+if (!method_exists($controller, $method)) {
+    header("HTTP/1.1 404 Not Found");
+    exit();
+}
+
+$response = call_user_func_array([$controller, $method], []);
+var_dump($response);

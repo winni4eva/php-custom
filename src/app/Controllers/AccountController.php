@@ -8,7 +8,13 @@ class AccountController extends AbstractController {
         //
     }
 
-    public function index() {}
+    public function index() {
+        return [
+            'data' => [
+                '1' => 'Adam'
+            ]
+        ];
+    }
 
     public function create() {}
 
