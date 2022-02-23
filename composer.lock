@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9af02ca11d2ff187d54e735300e6fcfe",
+    "content-hash": "12385f4a8142491bc17b45547d70c756",
     "packages": [
         {
             "name": "cakephp/core",
@@ -297,6 +297,53 @@
                 }
             ],
             "time": "2022-02-07T10:52:05+00:00"
+        },
+        {
+            "name": "haydenpierce/class-finder",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/hpierce1102/ClassFinder.git",
+                "reference": "d6c68f386c764674c59ee336d1dfca35aada5f90"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/hpierce1102%2FClassFinder/repository/archive.zip?sha=d6c68f386c764674c59ee336d1dfca35aada5f90",
+                "reference": "d6c68f386c764674c59ee336d1dfca35aada5f90",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "^1.6",
+                "phpunit/phpunit": "~9.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "HaydenPierce\\ClassFinder\\": "src/",
+                    "HaydenPierce\\ClassFinder\\UnitTest\\": "test/unit"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hayden Pierce",
+                    "email": "hayden@haydenpierce.com"
+                }
+            ],
+            "description": "A library that can provide of a list of classes in a given namespace",
+            "support": {
+                "issues": "https://gitlab.com/hpierce1102/ClassFinder/-/issues",
+                "source": "https://gitlab.com/hpierce1102/ClassFinder/-/tree/0.4.3"
+            },
+            "time": "2021-01-05T20:50:49+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -3689,7 +3736,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "vlucas/phpdotenv": 20,
-        "robmorgan/phinx": 20
+        "robmorgan/phinx": 20,
+        "haydenpierce/class-finder": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
