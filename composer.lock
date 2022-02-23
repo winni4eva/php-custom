@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "200105c0f171326695709e7d206e08cb",
+    "content-hash": "61da12ecb997f53ca09dc9148b639832",
     "packages": [
         {
             "name": "cakephp/core",
@@ -3937,11 +3937,14 @@
         "vlucas/phpdotenv": 20,
         "robmorgan/phinx": 20,
         "haydenpierce/class-finder": 20,
-        "illuminate/collections": 20
+        "illuminate/collections": 20,
+        "psr/container": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": "^8.0.2"
+    },
     "platform-dev": [],
     "plugin-api-version": "2.1.0"
 }

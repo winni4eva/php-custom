@@ -1,7 +1,7 @@
 <?php
 require "../../bootstrap.php";
 
-use HaydenPierce\ClassFinder\ClassFinder;
+use Winnipass\Wfx\App\Helpers\Container;
 use Winnipass\Wfx\App\Helpers\Helper;
 
 header("Access-Control-Allow-Origin: *");
@@ -25,19 +25,19 @@ if (str_ends_with($resourcePart, 's')) {
 $controllerClasses = Helper::getControllerClasses();
 $resourceControllerPath = Helper::resolveResourceControllerNamespaces($controllerClasses, $resourcePart);
 
-if (!class_exists($resourceControllerPath)) {
+if (! class_exists($resourceControllerPath)) {
     header("HTTP/1.1 404 Not Found");
     exit();
 }
 
 $requestMethod = $_SERVER["REQUEST_METHOD"];
 $method = Helper::REQUEST_METHOD_TO_CONTROLLER_ACTIONS_MAPPING[$requestMethod];
-$controller = new $resourceControllerPath();
 
-if (!method_exists($controller, $method)) {
+if (! method_exists($resourceControllerPath, $method)) {
     header("HTTP/1.1 404 Not Found");
     exit();
 }
 
-$response = call_user_func_array([$controller, $method], []);
+$controller = (new Container())->get($resourceControllerPath);
+$response = call_user_func([$controller, $method], []);
 var_dump($response);

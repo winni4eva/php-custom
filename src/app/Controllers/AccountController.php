@@ -1,12 +1,11 @@
 <?php
 namespace Winnipass\Wfx\App\Controllers;
 
+use Winnipass\Wfx\App\Models\Account;
+
 class AccountController extends AbstractController {
     
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(private Account $account) {}
 
     public function index() {
         return [

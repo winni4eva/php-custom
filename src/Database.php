@@ -27,7 +27,7 @@ class Database {
       }
     }
   
-    public function connet()
+    public function connect()
     {
       return $this->dbConnection;
     }
