@@ -18,16 +18,18 @@ class Database {
 
     private $connection;
 
+    protected const FETCH_ASSOC = PDO::FETCH_ASSOC;
+
     public function __construct()
     {
         $this->host = $_ENV['DB_HOST'];
         $this->database = $_ENV['DB_DATABASE'];
         $this->user = $_ENV['DB_USERNAME'];
         $this->password = $_ENV['DB_PASSWORD'];
-        $this->dsn = "mysql:host={$this->host};dbname={$this->database};charset=UTF8";   
+        $this->dsn = "mysql:host={$this->host};dbname={$this->database};charset=UTF8";
     }
 
-    public function connect(): PDO 
+    protected function connect(): PDO 
     {
         try {
 
@@ -40,5 +42,10 @@ class Database {
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
+    }
+
+    public function __destruct()
+    {
+        unset($this->connection);
     }
 }

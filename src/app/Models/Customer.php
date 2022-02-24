@@ -3,9 +3,12 @@ namespace Winnipass\Wfx\App\Models;
 
 class Customer extends AbstractModel {
 
-    private string $tableName = 'customers';
+    public string $tableName = 'customers';
 
-    public function getCustomers() {}
+    public function getCustomers() 
+    {
+        return $this->get();
+    }
 
     public function createCustomer() {}
 }

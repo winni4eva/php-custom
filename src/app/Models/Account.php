@@ -5,12 +5,11 @@ use PDO;
 
 class Account extends AbstractModel {
 
-    private string $tableName = 'accounts';
+    public string $tableName = 'accounts';
 
     public function getAccounts() 
     {
-        $connection = $this->connect();
-        return $connection->query("SELECT * FROM {$this->tableName}")->fetchAll(PDO::FETCH_ASSOC);
+        return $this->get();
     }
 
     public function createAccount() {}
