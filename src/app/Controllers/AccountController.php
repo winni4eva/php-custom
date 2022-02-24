@@ -8,11 +8,7 @@ class AccountController extends AbstractController {
     public function __construct(private Account $account) {}
 
     public function index() {
-        return [
-            'data' => [
-                '1' => 'Adam'
-            ]
-        ];
+        return $this->account->getAccounts();
     }
 
     public function create() {}
