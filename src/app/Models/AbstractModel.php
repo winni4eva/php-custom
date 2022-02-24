@@ -1,7 +1,7 @@
 <?php
 namespace Winnipass\Wfx\App\Models;
 
-use Winnipass\Wfx\Database;
+use Winnipass\Wfx\DB\Database;
 
 abstract class AbstractModel {
 

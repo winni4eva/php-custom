@@ -1,5 +1,5 @@
 <?php
-namespace Winnipass\Wfx;
+namespace Winnipass\Wfx\DB;
 
 use PDO;
 use PDOException;
