@@ -9,8 +9,8 @@ final class CreateCustomerTable extends AbstractMigration
     {
         $table = $this->table('customers');
             $table->addColumn('name', 'string', ['limit' => 255])
-            ->addColumn('created_at', 'datetime', ['timestamp' => 'CURRENT_TIMESTAMP'])
-            ->addColumn('updated_at', 'datetime', ['timestamp' => 'CURRENT_TIMESTAMP'])
+            ->addColumn('created_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
+            ->addColumn('updated_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
             ->create();
     }
 }

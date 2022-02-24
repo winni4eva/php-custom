@@ -10,8 +10,8 @@ final class CreateTransactionTable extends AbstractMigration
         $table = $this->table('transactions');
         $table->addColumn('account_id', 'integer', ['null' => false])
             ->addColumn('amount', 'biginteger', ['signed' => false, 'null' => false])
-            ->addColumn('created_at', 'datetime', ['timestamp' => 'CURRENT_TIMESTAMP'])
-            ->addColumn('updated_at', 'datetime', ['timestamp' => 'CURRENT_TIMESTAMP'])
+            ->addColumn('created_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
+            ->addColumn('updated_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
             ->addForeignKey('account_id', 'accounts', 'id', ['delete'=> 'CASCADE', 'update'=> 'CASCADE'])
             ->create();
     }
