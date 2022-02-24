@@ -13,12 +13,26 @@ abstract class AbstractModel extends Database
         $connection = $this->connect();
         $statement = $connection->query("SELECT * FROM {$this->tableName}");
         
-        return $statement->fetchAll(static::FETCH_ASSOC);
+        return $statement->fetchAll($connection::FETCH_ASSOC);
     }
 
     protected function all()
     {
         return $this->get();
+    }
+
+    protected function create(array $fields, array $data)
+    {
+        try {
+            $connection = $this->connect();
+            $connection->beginTransaction();
+            $sql = "INSERT INTO users (name, surname, sex) VALUES (:name, :surname, :sex)";
+            $connection->prepare($sql)->execute($data);
+            $connection->commit();
+        } catch (\Throwable $th) {
+            $connection->rollBack();
+            throw $th;
+        }
     }
 
     protected function where(array $filters)
@@ -39,6 +53,6 @@ abstract class AbstractModel extends Database
         }
         $statement = $connection->prepare($query);
         $statement->execute($bindings);
-        return $statement->fetch(static::FETCH_ASSOC);
+        return $statement->fetch($connection::FETCH_ASSOC);
     }
 }

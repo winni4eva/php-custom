@@ -18,8 +18,6 @@ class Database {
 
     private $connection;
 
-    protected const FETCH_ASSOC = PDO::FETCH_ASSOC;
-
     public function __construct()
     {
         $this->host = $_ENV['DB_HOST'];

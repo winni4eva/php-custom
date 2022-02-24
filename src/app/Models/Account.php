@@ -12,5 +12,8 @@ class Account extends AbstractModel {
         return $this->get();
     }
 
-    public function createAccount() {}
+    public function createAccount() 
+    {
+        //
+    }
 }

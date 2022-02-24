@@ -13,6 +13,11 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 @[$firstPart, $apiPart, $resourcePart, $resourceId] = explode( '/', $uri );
 
+/**
+ * TODO Filter request data for malicious scripts
+ * 
+ */
+
 if ($apiPart !== 'api') {
     header("HTTP/1.1 404 Not Found");
     exit();
@@ -39,13 +44,15 @@ if (! method_exists($resourceControllerPath, $method)) {
 }
 
 $controller = (new Container())->get($resourceControllerPath);
-var_dump($requestMethod);
+$response = null;
+
 if ($requestMethod === "GET" && $resourceId) {
-    var_dump("FOund a resource Id");
     $response = call_user_func([$controller, $method], [$resourceId]);
-} else if ($requestMethod === "POST") {
+} else if ($requestMethod === "GET" && !$resourceId) {
+    $response = call_user_func([$controller, $method], [$resourceId]);
+} else if ($requestMethod === "POST" && $resourceId) {
     $input = (array) json_decode(file_get_contents('php://input'));
-    $response = call_user_func([$controller, $method], $input);
+    $response = call_user_func([$controller, $method], [$resourceId, $input]);
 } else {
     $response = call_user_func([$controller, $method], [null]);
 }
