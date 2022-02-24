@@ -3,7 +3,7 @@ namespace Winnipass\Wfx\App\Controllers;
 
 use Winnipass\Wfx\App\Models\Account;
 
-class AccountController extends AbstractController {
+final class AccountController extends AbstractController {
     
     public function __construct(private Account $account) {}
 

@@ -1,7 +1,7 @@
 <?php
 namespace Winnipass\Wfx\App\Controllers;
 
-class TransactionController extends AbstractController {
+final class TransactionController extends AbstractController {
     
     public function __construct()
     {
