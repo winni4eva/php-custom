@@ -11,7 +11,7 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-[$firstPart, $apiPart, $resourcePart] = explode( '/', $uri );
+@[$firstPart, $apiPart, $resourcePart, $resourceId] = explode( '/', $uri );
 
 if ($apiPart !== 'api') {
     header("HTTP/1.1 404 Not Found");
@@ -39,5 +39,15 @@ if (! method_exists($resourceControllerPath, $method)) {
 }
 
 $controller = (new Container())->get($resourceControllerPath);
-$response = call_user_func([$controller, $method], []);
+var_dump($requestMethod);
+if ($requestMethod === "GET" && $resourceId) {
+    var_dump("FOund a resource Id");
+    $response = call_user_func([$controller, $method], [$resourceId]);
+} else if ($requestMethod === "POST") {
+    $input = (array) json_decode(file_get_contents('php://input'));
+    $response = call_user_func([$controller, $method], $input);
+} else {
+    $response = call_user_func([$controller, $method], [null]);
+}
+
 var_dump($response);
