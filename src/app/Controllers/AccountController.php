@@ -11,12 +11,11 @@ final class AccountController extends AbstractController {
         return $this->account->getAccounts();
     }
 
-    public function create(array|null $request) 
+    public function create(array $request) 
     {
-        var_dump('Create account data');
-        var_dump($request[1]);
-        var_dump('Create account Customer');
-        var_dump($request[0]);
+        [$customer, $data] = $request;
+ 
+        return $this->account->createAccount($customer, $data);
     }
 
     public function update() {}
