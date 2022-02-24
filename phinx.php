@@ -1,4 +1,5 @@
 <?php
+require "bootstrap.php";
 
 return
 [
@@ -7,7 +8,7 @@ return
         'seeds' => '%%PHINX_CONFIG_DIR%%/src/db/seeds'
     ],
     'environments' => [
-        'default_migration_table' => 'phinxlog',
+        'default_migration_table' => 'migrations',
         'default_environment' => $_ENV['APP_ENV'],
         'production' => [
             'adapter' => 'mysql',
