@@ -9,7 +9,10 @@ class Transaction extends AbstractModel {
 
     public string $tableName = 'transactions';
 
-    public function getTransactions() {}
+    public function getTransactions() 
+    {
+        return $this->get();
+    }
 
     public function createTransaction(int $customerId, array $data) 
     {

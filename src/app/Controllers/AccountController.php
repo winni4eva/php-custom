@@ -7,7 +7,8 @@ final class AccountController extends AbstractController {
     
     public function __construct(private Account $account) {}
 
-    public function index() {
+    public function index() 
+    {
         return $this->account->getAccounts();
     }
 

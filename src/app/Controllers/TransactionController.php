@@ -8,7 +8,10 @@ final class TransactionController extends AbstractController
     
     public function __construct(private Transaction $transaction){}
 
-    public function index() {}
+    public function index() 
+    {
+        return $this->transaction->getTransactions();
+    }
 
     public function create(array $request) 
     {
