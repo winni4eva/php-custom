@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap = "./tests/bootstrap.php"
+    colors                      = "true"
+    convertErrorsToExceptions   = "true"
+    convertNoticesToExceptions  = "true"
+    convertWarningsToExceptions = "true">
+
+    <php>
+        <env name="APP_ENV" value="testing" />
+        <env name="DB_HOST" value="localhost" />
+        <env name="DB_PORT" value="3306" />
+        <env name="DB_DATABASE" value="test_wfx-bank" />
+        <env name="DB_USERNAME" value="root" />
+        <env name="DB_PASSWORD" value="" />
+    </php>
+
+    <testsuites>
+        <testsuite name="unit">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

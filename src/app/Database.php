@@ -27,7 +27,7 @@ class Database {
         $this->dsn = "mysql:host={$this->host};dbname={$this->database};charset=UTF8";
     }
 
-    protected function connect(): PDO 
+    public function connect(): PDO 
     {
         try {
 

@@ -1,0 +1,1 @@
+{"version":1,"defects":{"Tests\\Unit\\CustomerTest::testCanFetchCustomers":4},"times":{"Tests\\Unit\\CustomerTest::testCanFetchCustomers":0.125,"Tests\\Unit\\CustomerTest::testCanCreateCustomers":0.112}}
