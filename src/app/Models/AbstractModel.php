@@ -35,19 +35,22 @@ abstract class AbstractModel extends Database
                     return ':'.$field;
                 })->values()->all();
                 $values = implode(',', $values);
-                
+                var_dump($fieldList);
+                var_dump($values);
                 $query = "INSERT INTO {$this->tableName} ({$fieldList}) VALUES ({$values})";
                
                 $bindings = $collection->map(function($val, $field) {
-                   return [':'.$field => (int)$val];
+                   return [':'.$field => $val];
                 })->values()->all();
-
+                var_dump($bindings);
                 $bindings = (array)array_merge(...$bindings);
                 $statement = $connection->prepare($query);
                 $statement->execute($bindings);
             }
 
             $connection->commit();
+
+            return true;
 
         } catch (\Throwable $th) {
             $connection->rollBack();

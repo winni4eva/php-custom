@@ -56,13 +56,31 @@ $response = null;
  * 
  */
 
-if ($requestMethod === "GET" && $resourceId) {
-    $response = call_user_func([$controller, $method], [$resourceId]);
-} else if ($requestMethod === "GET" && !$resourceId) {
-    $response = call_user_func([$controller, $method], [$resourceId]);
-} else if ($requestMethod === "POST" && $resourceId) {
-    $input = json_decode(file_get_contents('php://input'), true);
-    $response = call_user_func([$controller, $method], [$resourceId, $input]);
+switch ($requestMethod) {
+    case 'GET':
+        $response = call_user_func([$controller, $method], [$resourceId ?? null]);
+        break;
+    case 'POST':
+        $input = json_decode(file_get_contents('php://input'), true);
+        if ($resourceId) {
+            $response = call_user_func([$controller, $method], [$resourceId, $input]);
+        } else {
+            $response = call_user_func([$controller, $method], [$input]);
+        }
+        break;
+    default:
+        $response = [['message' => 'Could not handle request properly'], 400];
+        break;
+}
+$message = '';
+$statusCode = 0;
+
+if ($response) {
+    [$message, $statusCode] = $response;
+} else {
+    [$message, $statusCode] = [['message' => 'Could not handle request properly'], 400];
 }
 
-var_dump($response);
+header('Content-Type: application/json; charset=utf-8');
+http_response_code($statusCode);
+echo json_encode($message);
