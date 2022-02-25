@@ -20,7 +20,7 @@ class CustomerTest extends TestCase
     {
         $data = [
             [
-                "name" => "Marco Polo" 
+                "name" => "Floyd Greaves" 
             ],
         ];
         $this->customer->createCustomer($data);
@@ -29,9 +29,7 @@ class CustomerTest extends TestCase
         
         $this->assertIsArray($response);
         $this->assertCount(1, $response);
-    }
-
-    protected function tearDown(): void
-    {
+        $this->assertArrayHasKey('name', $response[0]);
+        $this->assertEquals("Floyd Greaves", $response[0]['name']);
     }
 }
