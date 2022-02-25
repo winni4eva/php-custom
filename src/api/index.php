@@ -51,6 +51,11 @@ if (! method_exists($resourceControllerPath, $method)) {
 $controller = (new Container())->get($resourceControllerPath);
 $response = null;
 
+/**
+ * TODO request data validation
+ * 
+ */
+
 if ($requestMethod === "GET" && $resourceId) {
     $response = call_user_func([$controller, $method], [$resourceId]);
 } else if ($requestMethod === "GET" && !$resourceId) {

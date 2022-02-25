@@ -18,6 +18,7 @@ class Account extends AbstractModel {
         $collection = (new Collection())->make($data);
         $accountData = $collection->map(function($account) use($customerId) {
             $account['customer_id'] = $customerId;
+            $account['amount'] = $account['amount'] * 100;
             return $account;
         })->values()->all();
 

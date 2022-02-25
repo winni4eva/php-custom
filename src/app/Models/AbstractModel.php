@@ -37,7 +37,7 @@ abstract class AbstractModel extends Database
                 $values = implode(',', $values);
                 
                 $query = "INSERT INTO {$this->tableName} ({$fieldList}) VALUES ({$values})";
-                var_dump($query);
+               
                 $bindings = $collection->map(function($val, $field) {
                    return [':'.$field => (int)$val];
                 })->values()->all();
