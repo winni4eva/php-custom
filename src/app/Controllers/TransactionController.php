@@ -3,7 +3,8 @@ namespace Winnipass\Wfx\App\Controllers;
 
 use Winnipass\Wfx\App\Models\Transaction;
 
-final class TransactionController extends AbstractController {
+final class TransactionController extends AbstractController 
+{
     
     public function __construct(private Transaction $transaction){}
 

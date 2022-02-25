@@ -5,6 +5,7 @@ use HaydenPierce\ClassFinder\ClassFinder;
 use Illuminate\Support\Collection;
 
 class Helper {
+
     const CONTROLLER_PATH = 'Winnipass\Wfx\App\Controllers';
 
     const ABSTRACT_CONTROLLER_NAME = 'abstract';
@@ -17,6 +18,8 @@ class Helper {
     ];
 
     const AMOUNT_CONVERSION_VALUE = 100;
+
+    const INITIAL_DEPOSIT_AMOUNT_IN_CENTS = 50000;
 
     public static function resolveResourceControllerNamespaces(array $namspaces, string $resource): string|false
     {

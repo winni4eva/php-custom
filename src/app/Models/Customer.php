@@ -13,7 +13,7 @@ class Customer extends AbstractModel {
     public function createCustomer(array $data) 
     {
         $fields = ['name'];
-        var_dump($data);
+    
         return $this->create($fields, $data);
     }
 }

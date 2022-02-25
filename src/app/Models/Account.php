@@ -15,6 +15,10 @@ class Account extends AbstractModel {
 
     public function createAccount(int $customerId, array $data) 
     {
+        var_dump('Customer');
+        var_dump($customerId);
+        var_dump('Datas');
+        var_dump($data);
         $collection = (new Collection())->make($data);
         $accountData = $collection->map(function($account) use($customerId) {
             $account['customer_id'] = $customerId;
