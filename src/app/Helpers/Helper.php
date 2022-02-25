@@ -16,6 +16,8 @@ class Helper {
         'DELETE' => 'delete' 
     ];
 
+    const AMOUNT_CONVERSION_VALUE = 100;
+
     public static function resolveResourceControllerNamespaces(array $namspaces, string $resource): string|false
     {
         $controllerPath = (new Collection($namspaces))
