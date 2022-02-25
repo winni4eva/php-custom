@@ -15,22 +15,15 @@ final class CustomerController extends AbstractController {
 
     public function create(array $request) 
     {   
-        //[$data] = $request;
         $response = $this->customer->createCustomer($request);
         
         if ($response) {
             return  [
-                [
-                    'success' => ' Customer created successfully',
-                    'request' => $request 
-                ],
+                ['success' => ' Customer created successfully'],
                 200 
             ];
         }
-        return  [
-            ['error' => 'Error creating customer'],
-            400 
-        ];
+        return  [['error' => 'Error creating customer'],400];
     }
 
     public function update() {}

@@ -15,7 +15,14 @@ final class AccountController extends AbstractController {
     {
         [$customer, $data] = $request;
  
-        return $this->account->createAccount($customer, $data);
+        $response = $this->account->createAccount($customer, $data);
+        if ($response) {
+            return  [
+                ['success' => 'Account created successfully'],
+                200 
+            ];
+        }
+        return  [['error' => 'Error creating account'],400];
     }
 
     public function update() {}

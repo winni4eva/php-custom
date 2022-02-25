@@ -13,7 +13,15 @@ final class TransactionController extends AbstractController {
     {
         [$customer, $data] = $request;
         
-        return $this->transaction->createTransaction($customer, $data);
+        $response = $this->transaction->createTransaction($customer, $data);
+
+        if ($response) {
+            return  [
+                ['success' => 'Transaction was successful'],
+                200 
+            ];
+        }
+        return  [['error' => 'Error creating transaction'],400];
     }
 
     public function update() {}
