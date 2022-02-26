@@ -52,7 +52,7 @@ final class TransactionController extends AbstractController
         if ($response) {
             return  [
                 ['success' => 'Transaction was successful'],
-                200 
+                201
             ];
         }
         return  [['error' => 'Error creating transaction'],400];

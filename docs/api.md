@@ -216,3 +216,122 @@ OR
 }
 ```
 
+## Create Transaction
+
+Creates a transaction or records a transfer from one account to another.
+
+**URL** : `/api/transactions/{customerId}`
+
+**Method** : `POST`
+
+Provide name of customer to be created.
+
+**Data example** All fields must be sent.
+
+`@param customerId integer REQUIRED`
+
+```json
+{
+    "debit_account": 11,
+    "credit_account": 8,
+    "amount": 50
+}
+```
+
+### Success Response
+
+**Code** : `201 CREATED`
+
+**Content**
+
+```json
+{
+    "success": "Transaction was successful"
+}
+```
+
+### Error Responses
+
+**Code** : `400 BAD REQUEST`
+
+**Content** : 
+```json
+{
+    "error": "Error creating transaction"
+}
+```
+
+## Get Transaction
+
+Gets a single account or gets all accounts.
+
+**URL** : `/api/transactions/{accountId}`
+
+**Method** : `GET`
+
+Provide an account id to get a single accounts transactions or leave out to get all trannsactions.
+
+**Data example**
+
+`@param id integer NOT REQUIRED`
+
+### Success Response
+
+**Code** : `200 OK`
+
+**Content**
+
+```json
+{
+    "data": [
+        {
+            "id": "1",
+            "account_id": "8",
+            "amount": "10000",
+            "created_at": "2022-02-25 07:51:34",
+            "updated_at": "2022-02-25 07:51:34"
+        },
+        {
+            "id": "3",
+            "account_id": "8",
+            "amount": "5000",
+            "created_at": "2022-02-25 09:57:44",
+            "updated_at": "2022-02-25 09:57:44"
+        }
+    ]
+}
+```
+OR
+
+```json
+{
+    "data": [
+        {
+            "id": "1",
+            "account_id": "8",
+            "amount": "10000",
+            "created_at": "2022-02-25 07:51:34",
+            "updated_at": "2022-02-25 07:51:34"
+        },
+        {
+            "id": "2",
+            "account_id": "10",
+            "amount": "50050",
+            "created_at": "2022-02-25 07:51:34",
+            "updated_at": "2022-02-25 07:51:34"
+        }
+    ]
+}
+```
+
+### Error Responses
+
+**Code** : `400 BAD REQUEST`
+
+**Content** : 
+```json
+{
+    "error": "Error fetching transaction data"
+}
+```
+
