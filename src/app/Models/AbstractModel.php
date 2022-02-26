@@ -22,10 +22,10 @@ abstract class AbstractModel extends Database
         return $this->get();
     }
 
-    protected function find(int $id)
+    protected function find(int $id, string $findColumn = 'id')
     {
         $connection = $this->connect();
-        $query = "SELECT * FROM {$this->tableName} WHERE id = :id LIMIT 1";
+        $query = "SELECT * FROM {$this->tableName} WHERE {$findColumn} = :id LIMIT 1";
         $statement = $connection->prepare($query); 
         $statement->execute(['id' => $id]); 
 
@@ -73,17 +73,18 @@ abstract class AbstractModel extends Database
 
         foreach ($filters as $key => $value) {
             [$field, $operation, $comparison] = $value;
-            $parameter = ':'.$$comparison;
-            array_push($bindings, [$parameter => $comparison]);
+            $$field = $field;
+            $bindings[$field] = $comparison;
 
             if ($key === 0) {
-                $query .= " WHERE {$field} {$operation} {$parameter}";
+                $query .= " WHERE {$field} {$operation} :".${$field};
             } else {
-                $query .= " OR WHERE {$field} {$operation} {$parameter}";
+                $query .= " OR WHERE {$field} {$operation} :".${$field};
             }
         }
+        
         $statement = $connection->prepare($query);
         $statement->execute($bindings);
-        return $statement->fetch($connection::FETCH_ASSOC);
+        return $statement->fetchAll($connection::FETCH_ASSOC);
     }
 }

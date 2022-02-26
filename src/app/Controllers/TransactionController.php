@@ -5,15 +5,45 @@ use Winnipass\Wfx\App\Models\Transaction;
 
 final class TransactionController extends AbstractController 
 {
-    
+    /**
+     * Initializes class properties
+     *
+     * @param Transaction $transaction
+     *
+     * @return void
+     */
     public function __construct(private Transaction $transaction){}
 
-    public function index() 
+    /**
+     * Gets transaction for a given account or returns all transactions 
+     *
+     * @param array $request
+     *
+     * @return array
+     */
+    public function index(array $request): array 
     {
-        return $this->transaction->getTransactions();
+        [$accountId] = $request;
+        
+        $response = $this->transaction->getTransactions($accountId);
+
+        if ($response) {
+            return  [
+                ['data' => $response],
+                200 
+            ];
+        }
+        return  [['error' => 'Error fetching transaction data'], 400];
     }
 
-    public function create(array $request) 
+    /**
+     * Adds a transaction record for a given customers account
+     *
+     * @param array $request
+     *
+     * @return array
+     */
+    public function create(array $request): array 
     {
         [$customer, $data] = $request;
         
@@ -27,8 +57,4 @@ final class TransactionController extends AbstractController
         }
         return  [['error' => 'Error creating transaction'],400];
     }
-
-    public function update() {}
-
-    public function delete() {}
 }

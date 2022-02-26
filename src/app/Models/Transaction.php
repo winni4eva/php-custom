@@ -9,8 +9,12 @@ class Transaction extends AbstractModel {
 
     public string $tableName = 'transactions';
 
-    public function getTransactions() 
+    public function getTransactions(int|null $accountId = null) 
     {
+        if ($accountId) {
+            return $this->where([['account_id', '=', $accountId]]);
+        }
+
         return $this->get();
     }
 
