@@ -5,12 +5,35 @@ use Winnipass\Wfx\App\Models\Customer;
 
 final class CustomerController extends AbstractController {
     
+    /**
+     * Initializes class properties
+     *
+     * @param Customer $customer
+     *
+     * @return void
+     */
     public function __construct(private Customer $customer) {}
 
-    public function index(array|null $request) 
+    /**
+     * Gets customers for a given account or returns all customers 
+     *
+     * @param array $request
+     *
+     * @return array
+     */
+    public function index(array|null $request): array 
     {
         [$customerId] = $request;
-        return $this->customer->getCustomers();
+        
+        $response = $this->customer->getCustomers($customerId);
+
+        if ($response) {
+            return  [
+                ['data' => $response],
+                200 
+            ];
+        }
+        return  [['error' => 'Error fetching customer data'], 400];
     }
 
     public function create(array $request) 
@@ -19,7 +42,7 @@ final class CustomerController extends AbstractController {
         
         if ($response) {
             return  [['success' => ' Customer created successfully'],
-                200 
+                201
             ];
         }
         return  [
@@ -27,8 +50,4 @@ final class CustomerController extends AbstractController {
             400 
         ];
     }
-
-    public function update() {}
-
-    public function delete() {}
 }

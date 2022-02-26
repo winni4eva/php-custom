@@ -5,8 +5,12 @@ class Customer extends AbstractModel {
 
     public string $tableName = 'customers';
 
-    public function getCustomers() 
+    public function getCustomers(int|null $customerId = null) 
     {
+        if ($customerId) {
+            return $this->find($customerId);
+        }
+
         return $this->get();
     }
 

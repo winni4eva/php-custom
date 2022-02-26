@@ -41,7 +41,7 @@ class Account extends AbstractModel {
 
         $collection = (new Collection())->make($data);
         $convertedAccounts = $collection->map(function($account){
-            $account['ammount'] = $account['amount']/Helper::AMOUNT_CONVERSION_VALUE;
+            $account['amount'] = $account['amount']/Helper::AMOUNT_CONVERSION_VALUE;
             return $account;
         })->values()->all();
 
