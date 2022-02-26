@@ -8,8 +8,12 @@ class Account extends AbstractModel {
 
     public string $tableName = 'accounts';
 
-    public function getAccounts() 
+    public function getAccounts(int|null $accountId = null) 
     {
+        if ($accountId) {
+            return $this->find($accountId);
+        }
+
         return $this->get();
     }
 

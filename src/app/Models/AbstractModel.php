@@ -22,6 +22,16 @@ abstract class AbstractModel extends Database
         return $this->get();
     }
 
+    protected function find(int $id)
+    {
+        $connection = $this->connect();
+        $query = "SELECT * FROM {$this->tableName} WHERE id = :id LIMIT 1";
+        $statement = $connection->prepare($query); 
+        $statement->execute(['id' => $id]); 
+
+        return $statement->fetch($connection::FETCH_ASSOC);
+    }
+
     protected function create(array $fields, array $data)
     {
         try {

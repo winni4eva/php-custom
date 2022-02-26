@@ -7,9 +7,19 @@ final class AccountController extends AbstractController {
     
     public function __construct(private Account $account) {}
 
-    public function index() 
+    public function index(array $request) 
     {
-        return $this->account->getAccounts();
+        [$accountId] = $request;
+        
+        $response = $this->account->getAccounts($accountId);
+
+        if ($response) {
+            return  [
+                ['data' => $response],
+                200 
+            ];
+        }
+        return  [['error' => 'Error fetching account data'], 400];
     }
 
     public function create(array $request) 
