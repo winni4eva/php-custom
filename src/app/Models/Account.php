@@ -23,7 +23,7 @@ class Account extends AbstractModel {
         $collection = (new Collection())->make($data);
         $accountData = $collection->map(function($account) use($customerId) {
             $account['customer_id'] = $customerId;
-            $account['amount'] = $account['amount'] * 100;
+            $account['amount'] = $account['amount'] * Helper::AMOUNT_CONVERSION_VALUE;
             return $account;
         })->values()->all();
 

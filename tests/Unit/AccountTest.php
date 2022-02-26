@@ -36,7 +36,7 @@ class AccountTest extends TestCase
                 "amount" => 1800.99
             ]
         ];
-        $accountValue = 5000.50 * Helper::AMOUNT_CONVERSION_VALUE;
+        $accountValue = 5000.50;
 
         $createResponse = $this->account->createAccount(1, $accountData);
         $response = $this->account->getAccounts();
