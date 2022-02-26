@@ -3,6 +3,7 @@ namespace Winnipass\Wfx\App\Models;
 
 use Illuminate\Support\Collection;
 use PDO;
+use Winnipass\Wfx\App\Helpers\Helper;
 
 class Account extends AbstractModel {
 
@@ -11,10 +12,10 @@ class Account extends AbstractModel {
     public function getAccounts(int|null $accountId = null) 
     {
         if ($accountId) {
-            return $this->find($accountId);
+            return $this->convertAccountAmounts($this->find($accountId));
         }
 
-        return $this->get();
+        return $this->convertAccountAmounts($this->get(), true);
     }
 
     public function createAccount(int $customerId, array $data) 
@@ -29,5 +30,21 @@ class Account extends AbstractModel {
         $fields = ['amount', 'customer_id'];
 
         return $this->create($fields, $accountData);
+    }
+
+    private function convertAccountAmounts(array $data, bool $isAssoc = false): array
+    {
+        if (! $isAssoc) {
+            $data['amount'] = $data['amount'] / Helper::AMOUNT_CONVERSION_VALUE;
+            return $data;
+        }
+
+        $collection = (new Collection())->make($data);
+        $convertedAccounts = $collection->map(function($account){
+            $account['ammount'] = $account['amount']/Helper::AMOUNT_CONVERSION_VALUE;
+            return $account;
+        })->values()->all();
+
+        return $convertedAccounts;
     }
 }
