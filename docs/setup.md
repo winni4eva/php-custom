@@ -23,5 +23,5 @@ Requirements
  ```
 + Run database migrations by using the command `vendor/bin/phinx seed:run` from the project root
 + Run database seeds by using the command `vendor/bin/phinx migrate -e development` from the project root
-+ start the server by using the command `php -S lolhost:8000 -t src`
++ start the server by using the command `php -S localhost:8000 -t src`
 + Follow the api docs section to add accounts and transfer funds between accounts
