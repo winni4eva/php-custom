@@ -1,4 +1,3 @@
-## PHP API EXAMPLE
 ## PROJECT SETUP
 
 ```
